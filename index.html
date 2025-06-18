@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Teacher Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<style>
+    *{box-sizing:border-box;
+      margin:0;
+      padding:0}
+
+    html{scroll-behavior:smooth
+    }
+    body{font-family:'Inter',sans-serif;
+    background:#e6f3ff;
+    color:#003366;
+    line-height:1.6}
+    section{padding:100px 40px 60px}
+    a{text-decoration:none;color:inherit}
+    h1,h2,h3{font-weight:700}
+    nav{position:fixed;top:0;left:0;width:100%;background:#b3d9ff;color:#003366;display:flex;justify-content:space-between;align-items:center;padding:12px 40px;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+    nav .logo{font-size:1.7rem}
+    nav ul{list-style:none;display:flex;gap:24px}
+    nav ul li a{font-weight:500;padding:6px 14px;border-radius:6px;transition:background .3s}
+    nav ul li a:hover{background:#d6ebff}
+    #home{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:100vh;background:linear-gradient(135deg,#e6f3ff 0%,#ffffff 100%)}
+    #home h1{font-size:2.8rem;margin-bottom:24px}
+    #home blockquote{font-style:italic;font-size:1.25rem;color:#336699;border-left:5px solid #3399ff;padding-left:20px;max-width:650px}
+    #about{display:flex;flex-wrap:wrap;gap:40px;align-items:center;background:#ffffff;border-radius:12px;margin:40px auto;max-width:1200px;box-shadow:0 6px 24px rgba(0,0,0,.05)}
+    #about .content{flex:1 1 380px;padding:20px 30px}
+    #about .image{flex:1 1 320px;text-align:center}
+    #about img{max-width:100%;border-radius:12px;box-shadow:0 4px 18px rgba(0,0,0,.1)}
+    #qualification h2{text-align:center;margin-bottom:40px}
+    #qualification ul{display:flex;flex-wrap:wrap;gap:24px;justify-content:center;padding:0}
+    #qualification li{list-style:none;background:#ffffff;border:1px solid #99ccff;padding:24px;width:260px;position:relative;transition:transform .3s,box-shadow .3s;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,.05);cursor:default}
+    #qualification li:hover{transform:translateY(-8px);box-shadow:0 8px 24px rgba(0,0,0,.08)}
+    #qualification li strong{display:block;margin-bottom:8px}
+    #qualification li .details{opacity:0;visibility:hidden;transition:opacity .3s;position:absolute;left:0;bottom:0;right:0;padding:20px;background:#f2f9ff;border-top:1px solid #cce6ff;border-radius:0 0 12px 12px}
+    #qualification li:hover .details{opacity:1;visibility:visible}
+    #charges{background:#d6ebff;text-align:center;border-radius:12px;margin:60px 40px;padding:60px 20px;box-shadow:0 6px 24px rgba(0,0,0,.05)}
+    #chargeCard{background:#ffffff;margin:40px auto;padding:40px;max-width:520px;border-radius:14px;box-shadow:0 6px 24px rgba(0,0,0,.1)}
+    #chargePrice{font-size:1.3rem;font-weight:600;margin-bottom:16px;color:#336699}
+    #charges button{padding:10px 22px;margin:0 14px;border:none;background:#3399ff;color:#fff;border-radius:6px;cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,.1);font-weight:500;transition:background .3s,transform .2s}
+    #charges button:hover{background:#267acc;transform:translateY(-2px)}
+    #reviews h2,#contact h2{text-align:center;margin-bottom:28px}
+    #reviews form,#contact form{display:flex;flex-direction:column;gap:14px;max-width:520px;margin:0 auto}
+    textarea{min-height:120px;resize:vertical;padding:12px;border-radius:8px;border:1px solid #99ccff}
+    input,select{padding:12px;border:1px solid #99ccff;border-radius:8px;font-size:1rem}
+    button.submit{background:#3399ff;color:#fff;border:none;padding:14px;border-radius:8px;cursor:pointer;font-weight:500;box-shadow:0 3px 10px rgba(0,0,0,.1);transition:background .3s,transform .2s}
+    button.submit:hover{background:#267acc;transform:translateY(-2px)}
+    .reviewItem{background:#ffffff;border-left:5px solid #3399ff;padding:18px 24px;margin-bottom:18px;box-shadow:0 3px 10px rgba(0,0,0,.08);border-radius:8px}
+    footer{background:#b3d9ff;color:#003366;text-align:center;padding:22px;font-weight:500;border-top:1px solid #99ccff}
+  
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+        padding-top: 10px;
+      }
+      #about {
+        flex-direction: column;
+        text-align: center;
+      }
+      #about .content, #about .image {
+        flex: 1 1 100%;
+        padding: 10px;
+      }
+      #qualification ul {
+        flex-direction: column;
+        align-items: center;
+      }
+      #chargeCard {
+        width: 90%;
+        padding: 20px;
+      }
+      #contact form {
+        width: 90%;
+      }
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+    
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 10px;
+}
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  margin: 3px 0;
+}
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+  nav ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: white;
+  }
+  nav ul.active {
+    display: flex;
+  }
+}
+</style>
+</head>
+<body>
+<nav>
+<div class="hamburger" onclick="toggleMenu()">
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+</div>
+
+<div class="logo">Teacher Profile</div>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#qualification">Qualification</a></li>
+<li><a href="#charges">Charges</a></li>
+<li><a href="#reviews">Reviews</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+<section id="home">
+<h1>Welcome to Mrs. Sharma's Classroom</h1>
+<blockquote>“Education is the most powerful weapon which you can use to change the world.” — Nelson Mandela</blockquote>
+</section>
+<section id="about">
+<div class="content">
+<h2>About Me</h2>
+<p>Hello! I'm <strong>Mrs. Anjali Sharma</strong>, a passionate Mathematics teacher with over 10 years of experience.</p>
+<p>Beyond the classroom, I love reading, gardening, and mentoring young minds in STEM programs.</p>
+</div>
+<div class="image">
+<img alt="Teacher Photo" src="https://plus.unsplash.com/premium_photo-1682089854123-740310ebad43?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW5kaWFuJTIwdGVhY2hlcnxlbnwwfHwwfHx8MA%3D%3D"/>
+</div>
+</section>
+<section id="qualification">
+<h2>Qualifications</h2>
+<ul>
+<li>
+<strong>M.Sc. Mathematics</strong>
+<div class="details">
+<p>University of Delhi, 2014 — Graduated with First Class Honours focusing on Abstract Algebra and Real Analysis.</p>
+</div>
+</li>
+<li>
+<strong>B.Ed.</strong>
+<div class="details">
+<p>IGNOU, 2016 — Specialized in Pedagogy of Mathematics and Educational Psychology.</p>
+</div>
+</li>
+<li>
+<strong>CTET Qualified</strong>
+<div class="details">
+<p>Cleared CTET (Paper II) with 92 percentile in 2017.</p>
+</div>
+</li>
+</ul>
+</section>
+<section id="charges">
+<h2>Tuition Charges &amp; Packages</h2>
+<div id="chargeCard">
+<h3 id="chargeTitle">One‑on‑One Tuitions</h3>
+<p id="chargePrice">₹800 per hour</p>
+<p id="chargeDesc">Personalised sessions tailored to the student's curriculum and pace.</p>
+<button id="prevCharge">‹ Prev</button>
+<button id="nextCharge">Next ›</button>
+</div>
+</section>
+<section id="contact">
+<h2>Contact Me</h2>
+<form id="contactForm">
+<input id="name" placeholder="Your Name" required="" type="text"/>
+<input id="phone" pattern="[0-9]{10}" placeholder="Contact Number" required="" type="tel"/>
+<select id="gender" required="">
+<option disabled="" selected="" value="">Select Gender</option>
+<option value="Female">Female</option>
+<option value="Male">Male</option>
+<option value="Other">Other</option>
+</select>
+<input id="age" max="100" min="5" placeholder="Age" required="" type="number"/>
+<button class="submit" type="submit">Submit &amp; WhatsApp</button>
+</form>
+</section>
+<footer>© <span id="year"></span> All Rights Reserved.</footer>
+<script>
+    const charges = [
+      {title:"One‑on‑One Tuitions",price:"₹800 per hour",desc:"Personalised sessions tailored to the student's curriculum and pace."},
+      {title:"Group Classes (Max 5)",price:"₹400 per hour per student",desc:"Collaborative learning with peers, ideal for doubt‑clearing and practice."},
+      {title:"Exam Crash Course",price:"₹6000 for 15 sessions",desc:"Intensive revision course focusing on board exam patterns and past papers."}
+    ];
+    let current = 0;
+    const titleEl = document.getElementById("chargeTitle");
+    const priceEl = document.getElementById("chargePrice");
+    const descEl = document.getElementById("chargeDesc");
+    function renderCharge(){const c=charges[current];titleEl.textContent=c.title;priceEl.textContent=c.price;descEl.textContent=c.desc}
+    renderCharge();
+    document.getElementById("prevCharge").onclick = () => {current = (current - 1 + charges.length) % charges.length; renderCharge();};
+    document.getElementById("nextCharge").onclick = () => {current = (current + 1) % charges.length; renderCharge();};
+
+    const contactForm = document.getElementById("contactForm");
+    contactForm.onsubmit = e => {
+      e.preventDefault();
+      const n=document.getElementById("name").value.trim();
+      const p=document.getElementById("phone").value.trim();
+      const msg=encodeURIComponent(`Hello, I am ${n}. My contact number is ${p}. I am interested in your tuition classes.`);
+      window.open(`https://wa.me/7355441134?text=${msg}`,"_blank");
+    };
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  
+function toggleMenu() {
+  const navLinks = document.querySelector("nav ul");
+  navLinks.classList.toggle("active");
+}
+</script>
+</body>
+</html>
